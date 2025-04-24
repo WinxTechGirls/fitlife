@@ -2,16 +2,16 @@ import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import Tema from "../../../models/Tema";
+import Nivel from "../../../models/Nivel";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
 
-function FormTema() {
+function FormNivel() {
 
     const navigate = useNavigate();
 
-    const [tema, setTema] = useState<Tema>({
+    const [nivel, setNivel] = useState<Nivel>({
         id: null,
-        descricao: ''
+        dificuldade: ''
     })
     const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -22,7 +22,7 @@ function FormTema() {
 
     async function buscarPorId(id: string) {
         try {
-            await buscar(`/temas/${id}`, setTema, {
+            await buscar(`/niveis/${id}`, setNivel, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
@@ -34,7 +34,7 @@ function FormTema() {
 
     useEffect(() => {
         if (token === '') {
-            alert('Você precisa estar logado!')
+            alert('VocÃª precisa estar logado!')
             navigate('/')
         }
     }, [token])
@@ -46,45 +46,45 @@ function FormTema() {
     }, [id])
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-        setTema({
-            ...tema,
+        setNivel({
+            ...nivel,
             [e.target.name]: e.target.value
         })
     }
 
     function retornar() {
-        navigate("/temas")
+        navigate("/niveis")
     }
 
-    async function gerarNovoTema(e: ChangeEvent<HTMLFormElement>) {
+    async function gerarNovoNivel(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsLoading(true)
 
         if (id !== undefined) {
             try {
-                await atualizar(`/temas`, tema, setTema, {
+                await atualizar(`/niveis`, nivel, setNivel, {
                     headers: { 'Authorization': token }
                 })
-                alert('O Tema foi atualizado com sucesso!')
+                alert('O Nivel foi atualizado com sucesso!')
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao atualizar o tema.')
+                    alert('Erro ao atualizar o nivel.')
                 }
 
             }
         } else {
             try {
-                await cadastrar(`/temas`, tema, setTema, {
+                await cadastrar(`/niveis`, nivel, setNivel, {
                     headers: { 'Authorization': token }
                 })
-                alert('O Tema foi cadastrado com sucesso!')
+                alert('O Nivel foi cadastrado com sucesso!')
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout();
                 } else {
-                    alert('Erro ao cadastrar o tema.')
+                    alert('Erro ao cadastrar o nivel.')
                 }
 
             }
@@ -97,18 +97,18 @@ function FormTema() {
     return (
         <div className="container flex flex-col items-center justify-center mx-auto">
             <h1 className="text-4xl text-center my-8">
-                {id === undefined ? 'Cadastrar Tema' : 'Editar Tema'}
+                {id === undefined ? 'Cadastrar Nivel' : 'Editar Nivel'}
             </h1>
 
-            <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovoTema}>
+            <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovoNivel}>
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="descricao">Descrição do Tema</label>
+                    <label htmlFor="dificuldade">Dificuldade do nivel</label>
                     <input
                         type="text"
-                        placeholder="Descreva aqui seu tema"
-                        name='descricao'
+                        placeholder="Descreva aqui qual a dificuldade"
+                        name='dificuldade'
                         className="border-2 border-slate-700 rounded p-2"
-                        value={tema.descricao}
+                        value={nivel.dificuldade}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
@@ -133,4 +133,4 @@ function FormTema() {
     );
 }
 
-export default FormTema;
+export default FormNivel;

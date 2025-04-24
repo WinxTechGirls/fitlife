@@ -1,29 +1,29 @@
 import { useState, useContext, useEffect, ChangeEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import Postagem from "../../../models/Postagem";
-import Tema from "../../../models/Tema";
+import Produto from "../../../models/Produto";
+import Nivel from "../../../models/Nivel";
 import { buscar, atualizar, cadastrar } from "../../../services/Service";
 import { RotatingLines } from "react-loader-spinner";
 
-function FormPostagem() {
+function FormProduto() {
 
     const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [temas, setTemas] = useState<Tema[]>([])
+    const [niveis, setNiveis] = useState<Nivel[]>([])
 
-    const [tema, setTema] = useState<Tema>({ id: 0, descricao: '', })
-    const [postagem, setPostagem] = useState<Postagem>({} as Postagem)
+    const [nivel, setNivel] = useState<Nivel>({ id: 0, dificuldade: '', })
+    const [produto, setProduto] = useState<Produto>({} as Produto)
 
     const { id } = useParams<{ id: string }>()
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
 
-    async function buscarPostagemPorId(id: string) {
+    async function buscarProdutoPorId(id: string) {
         try {
-            await buscar(`/postagens/${id}`, setPostagem, {
+            await buscar(`/produtos/${id}`, setProduto, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
@@ -33,9 +33,9 @@ function FormPostagem() {
         }
     }
 
-    async function buscarTemaPorId(id: string) {
+    async function buscarNivelPorId(id: string) {
         try {
-            await buscar(`/temas/${id}`, setTema, {
+            await buscar(`/niveis/${id}`, setNivel, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
@@ -45,9 +45,9 @@ function FormPostagem() {
         }
     }
 
-    async function buscarTemas() {
+    async function buscarNiveis() {
         try {
-            await buscar('/temas', setTemas, {
+            await buscar('/niveis', setNiveis, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
@@ -65,70 +65,70 @@ function FormPostagem() {
     }, [token])
 
     useEffect(() => {
-        buscarTemas()
+        buscarNiveis()
 
         if (id !== undefined) {
-            buscarPostagemPorId(id)
+            buscarProdutoPorId(id)
         }
     }, [id])
 
     useEffect(() => {
-        setPostagem({
-            ...postagem,
-            tema: tema,
+        setProduto({
+            ...produto,
+            nivel: nivel,
         })
-    }, [tema])
+    }, [nivel])
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-        setPostagem({
-            ...postagem,
+        setProduto({
+            ...produto,
             [e.target.name]: e.target.value,
-            tema: tema,
+            nivel: nivel,
             usuario: usuario,
         });
     }
 
     function retornar() {
-        navigate('/postagens');
+        navigate('/produtos');
     }
 
-    async function gerarNovaPostagem(e: ChangeEvent<HTMLFormElement>) {
+    async function gerarNovoProduto(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsLoading(true)
 
         if (id !== undefined) {
             try {
-                await atualizar(`/postagens`, postagem, setPostagem, {
+                await atualizar(`/produtos`, produto, setProduto, {
                     headers: {
                         Authorization: token,
                     },
                 });
 
-                alert('Postagem atualizada com sucesso')
+                alert('Produto atualizado com sucesso')
 
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout()
                 } else {
-                    alert('Erro ao atualizar a Postagem')
+                    alert('Erro ao atualizar o Produto')
                 }
             }
 
         } else {
             try {
-                await cadastrar(`/postagens`, postagem, setPostagem, {
+                await cadastrar(`/produtos`, produto, setProduto, {
                     headers: {
                         Authorization: token,
                     },
                 })
 
-                alert('Postagem cadastrada com sucesso');
+                alert('Produto cadastrado com sucesso');
 
             } catch (error: any) {
                 if (error.toString().includes('403')) {
                     handleLogout()
                 } else {
-                    alert('Erro ao cadastrar a Postagem');
+                    alert('Erro ao cadastrar o Produto');
                 }
             }
         }
@@ -137,49 +137,61 @@ function FormPostagem() {
         retornar()
     }
 
-    const carregandoTema = tema.descricao === '';
+    const carregandoNivel = nivel.dificuldade === '';
 
     return (
         <div className="container flex flex-col mx-auto items-center">
             <h1 className="text-4xl text-center my-8">
-                {id !== undefined ? 'Editar Postagem' : 'Cadastrar Postagem'}
+                {id !== undefined ? 'Editar Produto' : 'Cadastrar Produto'}
             </h1>
 
-            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovaPostagem}>
+            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovoProduto}>
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Título da Postagem</label>
+                    <label htmlFor="titulo">Título do Treino</label>
                     <input
                         type="text"
                         placeholder="Titulo"
-                        name="titulo"
+                        name="nome"
                         required
                         className="border-2 border-slate-700 rounded p-2"
-                        value={postagem.titulo}
+                        value={produto.nome}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="titulo">Texto da Postagem</label>
+                    <label htmlFor="descricao">Descricao do treino</label>
                     <input
                         type="text"
-                        placeholder="Texto"
-                        name="texto"
+                        placeholder="Descricao"
+                        name="descricao"
                         required
                         className="border-2 border-slate-700 rounded p-2"
-                        value={postagem.texto}
+                        value={produto.descricao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
                 <div className="flex flex-col gap-2">
-                    <p>Tema da Postagem</p>
-                    <select name="tema" id="tema" className='border p-2 border-slate-800 rounded'
-                        onChange={(e) => buscarTemaPorId(e.currentTarget.value)}
+                    <label htmlFor="foto">Foto</label>
+                    <input
+                        type="text"
+                        placeholder="URL foto"
+                        name="foto"
+                        required
+                        className="border-2 border-slate-700 rounded p-2"
+                        value={produto.foto}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                    />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <p>Nivel do Produto</p>
+                    <select name="nivel" id="nivel" className='border p-2 border-slate-800 rounded'
+                        onChange={(e) => buscarNivelPorId(e.currentTarget.value)}
                     >
-                        <option value="" selected disabled>Selecione um Tema</option>
+                        <option value="" selected disabled>Selecione um Produto</option>
 
-                        {temas.map((tema) => (
+                        {niveis.map((nivel) => (
                             <>
-                                <option value={tema.id!} >{tema.descricao}</option>
+                                <option value={nivel.id!} >{nivel.dificuldade}</option>
                             </>
                         ))}
 
@@ -189,7 +201,7 @@ function FormPostagem() {
                     type='submit'
                     className='rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800
                                text-white font-bold w-1/2 mx-auto py-2 flex justify-center'
-                    disabled={carregandoTema}
+                    disabled={carregandoNivel}
                 >
                     {isLoading ?
                         <RotatingLines
@@ -207,4 +219,4 @@ function FormPostagem() {
     );
 }
 
-export default FormPostagem;
+export default FormProduto;

@@ -6,15 +6,15 @@ import { AuthProvider } from './contexts/AuthContext';
 import Cadastro from './pages/cadastro/Cadastro';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
-import ListaTemas from './components/temas/listatemas/ListaTemas';
-import FormTema from './components/temas/formtema/FormTema';
-import DeletarTema from './components/temas/deletartema/DeletarTema';
-import ListaPostagens from './components/postagens/listapostagens/ListaPostagens';
-import FormPostagem from './components/postagens/formpostagem/FormPostagem';
-import DeletarPostagem from './components/postagens/deletarpostagem/DeletarPostagem';
 import Perfil from './pages/perfil/Perfil';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import ListaNiveis from './components/niveis/listaniveis/ListaNiveis';
+import DeletarNivel from './components/niveis/deletarnivel/DeletarNivel';
+import FormProduto from './components/produtos/formproduto/FormProduto';
+import DeletarProduto from './components/produtos/deletarproduto/DeletarProduto';
+import FormNivel from './components/niveis/formnivel/FormNivel';
+import ListaProdutos from './components/produtos/listaprodutos/ListaProdutos';
 
 function App() {
 
@@ -29,14 +29,14 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/cadastro" element={<Cadastro />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/temas" element={<ListaTemas />} />
-              <Route path="/cadastrartema" element={<FormTema />} />
-              <Route path="/editartema/:id" element={<FormTema />} />
-              <Route path="/deletartema/:id" element={<DeletarTema />} />
-              <Route path="/postagens" element={<ListaPostagens />} />
-              <Route path="/cadastrarpostagem" element={<FormPostagem />} />
-              <Route path="/editarpostagem/:id" element={<FormPostagem />} />
-              <Route path="/deletarpostagem/:id" element={<DeletarPostagem />} />
+              <Route path="/niveis" element={<ListaNiveis />} />
+              <Route path="/cadastrarnivel" element={<FormNivel />} />
+              <Route path="/editarnivel/:id" element={<FormNivel />} />
+              <Route path="/deletarnivel/:id" element={<DeletarNivel />} />
+              <Route path="/produtos" element={<ListaProdutos />} />
+              <Route path="/cadastrarproduto" element={<FormProduto />} />
+              <Route path="/editarproduto/:id" element={<FormProduto />} />
+              <Route path="/deletarproduto/:id" element={<DeletarProduto />} />
               <Route path="/perfil" element={<Perfil />} />
           </Routes>
         </div>

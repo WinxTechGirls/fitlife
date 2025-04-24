@@ -1,5 +1,5 @@
-import ListaPostagens from "../../components/postagens/listapostagens/ListaPostagens"
-import ModalPostagem from "../../components/postagens/modalpostagem/ModalPostagem"
+import ListaProdutos from "../../components/produtos/listaprodutos/ListaProdutos"
+import ModalProduto from "../../components/produtos/modalproduto/ModalProduto"
 
 function Home() {
     return (
@@ -16,7 +16,7 @@ function Home() {
 
                         <div className="flex justify-around gap-4">
                             <div className="flex justify-around gap-4">
-                                <ModalPostagem />
+                                <ModalProduto />
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@ function Home() {
                 </div>
             </div>
 
-            <ListaPostagens />
+            <ListaProdutos />
         </>
     )
 }

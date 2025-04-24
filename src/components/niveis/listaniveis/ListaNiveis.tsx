@@ -2,22 +2,22 @@ import { useContext, useEffect, useState } from "react";
 import { DNA } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import Tema from "../../../models/Tema";
-import CardTemas from "../cardtemas/CardTemas";
+import Nivel from "../../../models/Nivel";
+import CardNiveis from "../cardniveis/CardNiveis";
 import { buscar } from "../../../services/Service";
 
-function ListaTemas() {
+function ListaNiveis() {
 
     const navigate = useNavigate();
 
-    const [temas, setTemas] = useState<Tema[]>([])
+    const [niveis, setNiveis] = useState<Nivel[]>([])
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
 
-    async function buscarTemas() {
+    async function buscarNiveis() {
         try {
-            await buscar('/temas', setTemas, {
+            await buscar('/niveis', setNiveis, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
@@ -35,12 +35,12 @@ function ListaTemas() {
     }, [token])
 
     useEffect(() => {
-        buscarTemas()    
-    }, [temas.length])
-    
+        buscarNiveis()
+    }, [niveis.length])
+
     return (
         <>
-        {temas.length === 0 && (
+        {niveis.length === 0 && (
             <DNA
             visible={true}
             height="200"
@@ -53,8 +53,8 @@ function ListaTemas() {
             <div className="flex justify-center w-full my-4">
                 <div className="container flex flex-col">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                       {temas.map((tema) => (
-                            <CardTemas key={tema.id} tema={tema} />
+                       {niveis.map((nivel) => (
+                            <CardNiveis key={nivel.id} nivel={nivel} />
                         ))}
                     </div>
                 </div>
@@ -63,4 +63,4 @@ function ListaTemas() {
     )
 }
 
-export default ListaTemas;
+export default ListaNiveis;
