@@ -18,18 +18,18 @@ function Navbar() {
     let componente: ReactNode
 
     if (usuario.token != ''){
-        componente = (<div className='w-full bg-indigo-900 text-white
+        componente = (<div className='w-full bg-black text-white
         flex justify-center py-4'>
 
         <div className="container flex justify-between text-lg">
-            <Link to='/home' className="text-2xl font-bold">Blog Pessoal</Link>
+            <Link to='/home' className="text-2xl font-bold font-serif text-red-800">FitLife</Link>
 
             <div className='flex gap-4'>
-                <Link to='/produtos' className='hover:underline'>Treinos</Link>
-                <Link to='/niveis' className='hover:underline'>Niveis</Link>
-                <Link to='/cadastrarnivel' className='hover:underline'>Cadastrar nível</Link>
-                <Link to='/perfil' className='hover:underline'>Perfil</Link>
-                <Link to='' onClick={logout} className='hover:underline'>Sair</Link>
+                <Link to='/produtos' className='hover:underline font-bold font-serif text-red-800'>Treinos</Link>
+                <Link to='/niveis' className='hover:underline font-bold font-serif text-red-800'>Niveis</Link>
+                <Link to='/cadastrarnivel' className='hover:underline font-bold font-serif text-red-800'>Cadastrar nível</Link>
+                <Link to='/perfil' className='hover:underline font-bold font-serif text-red-800'>Perfil</Link>
+                <Link to='' onClick={logout} className='hover:underline font-bold font-serif text-red-800'>Sair</Link>
             </div>
         </div>
     </div>)
