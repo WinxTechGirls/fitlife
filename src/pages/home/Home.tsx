@@ -1,3 +1,4 @@
+import ModalProduto from "../../components/produtos/modalproduto/ModalProduto"
 
 function Home() {
     return (
@@ -7,7 +8,10 @@ function Home() {
                     <div className="flex flex-col gap-4 items-center justify-center py-4">
                         <h2 className='text-5xl font-bold font-serif  text-red-800'>
                             ACADEMIA < br />
-                            <span className="ml-10 text-red-800">FITLIFE</span>
+                            <span className="ml-10 text-red-800">FITLIFE</span> 
+                            <div className="mt-5 text-sm ml-20">
+                                <ModalProduto />
+                            </div>
                         </h2>
 
                        

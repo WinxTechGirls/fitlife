@@ -18,8 +18,8 @@ function Footer() {
                 <p className='text-lg text-red-800'>Acesse nossas redes sociais</p>
                 <div className='flex gap-2'>
                 <LinkedinLogo size={48} weight='bold' className='text-red-800' />
-<InstagramLogo size={48} weight='bold' className='text-red-800' />
-<FacebookLogo size={48} weight='bold' className='text-red-800' />
+                <InstagramLogo size={48} weight='bold' className='text-red-800' />
+                <FacebookLogo size={48} weight='bold' className='text-red-800' />
                 </div>
             </div>
         </div>)
