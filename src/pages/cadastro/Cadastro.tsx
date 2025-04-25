@@ -14,7 +14,7 @@ function Cadastro() {
   const[confirmaSenha, setConfirmaSenha] = useState<string>("")
 
   const [usuario, setUsuario] = useState<Usuario>({
-    id: 0,
+    id: null,
     nome: '',
     usuario: '',
     senha: '',
@@ -22,7 +22,7 @@ function Cadastro() {
   })
   
   useEffect(() => {
-    if (usuario.id !== 0){
+    if (usuario.id !== 0 && usuario.id !== null){
       retornar()
     }
   }, [usuario])
