@@ -110,7 +110,7 @@ function FormProduto() {
                 if (error.toString().includes('403')) {
                     handleLogout()
                 } else {
-                    alert('Erro ao atualizar o Produto')
+                    alert('Erro ao atualizar o Treino')
                 }
             }
 
@@ -122,7 +122,7 @@ function FormProduto() {
                     },
                 })
 
-                alert('Produto cadastrado com sucesso');
+                alert('Treino cadastrado com sucesso');
 
             } catch (error: any) {
                 if (error.toString().includes('403')) {
@@ -142,7 +142,7 @@ function FormProduto() {
     return (
         <div className="container flex flex-col mx-auto items-center">
             <h1 className="text-4xl text-center my-8">
-                {id !== undefined ? 'Editar Produto' : 'Cadastrar Produto'}
+                {id !== undefined ? 'Editar treino' : 'Cadastrar Treino'}
             </h1>
 
             <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovoProduto}>
@@ -183,7 +183,19 @@ function FormProduto() {
                     />
                 </div>
                 <div className="flex flex-col gap-2">
-                    <p>Nivel do Produto</p>
+                    <label htmlFor="duracao">Duração do treino</label>
+                    <input
+                        type="duracao"
+                        placeholder="duracao em minutos"
+                        name="duracao"
+                        required
+                        className="border-2 border-slate-700 rounded p-2"
+                        value={produto.duracao}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                    />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <p>Nivel do Treino</p>
                     <select name="nivel" id="nivel" className='border p-2 border-slate-800 rounded'
                         onChange={(e) => buscarNivelPorId(e.currentTarget.value)}
                     >

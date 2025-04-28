@@ -20,7 +20,7 @@ function Perfil() {
 			<div className="container mx-auto my-4 rounded-2xl overflow-hidden">
 				<img
 					className="w-full h-72 object-cover border-b-8 border-white"
-					src="https://i.imgur.com/ZZFAmzo.jpg"
+					src="https://media.istockphoto.com/id/1391410249/pt/foto/sports-and-gym-activities.jpg?s=612x612&w=0&k=20&c=697XD2Py3wSSjAziZ1Rtkz0AKJDxC88U1y7mQWqK0TI="
 					alt="Capa do Perfil"
 				/>
 
@@ -32,7 +32,7 @@ function Perfil() {
 
 				<div
 					className="relative mt-[-6rem] h-72 flex flex-col 
-                    bg-sky-500 text-white text-2xl items-center justify-center"
+                    bg-red-700 text-white text-2xl items-center justify-center"
 				>
 					<p>Nome: {usuario.nome} </p>
 					<p>Email: {usuario.usuario}</p>

@@ -34,7 +34,7 @@ function FormNivel() {
 
     useEffect(() => {
         if (token === '') {
-            alert('VocÃª precisa estar logado!')
+            alert('Você precisa estar logado!')
             navigate('/')
         }
     }, [token])
