@@ -28,15 +28,11 @@ function Home() {
             </div>
             <div style={{ display: 'flex', alignItems: 'flex-start' }}>
             <p className="text-justify font-serif" style={{ lineHeight: '1.9', maxWidth: '600px', margin: '200px 20px 0 30px' }}>
-                A FITLIFE é mais do que uma academia, é um espaço prazeroso dedicado ao condicionamento físico 
-                e à saúde de seus alunos. A FITLIFE acredita na importância de melhorar a qualidade de vida, 
-                tanto no aspecto físico quanto emocional. Para isso, oferece um ambiente amplo e 
-                cuidadosamente projetado, com instalações de alta tecnologia.
+                 A FITLIFE é mais do que uma academia; é um espaço dedicado ao condicionamento físico e à saúde de nossos alunos. Acreditamos na importância de melhorar a qualidade de vida, tanto no aspecto físico quanto emocional. Para isso, oferecemos um ambiente amplo e cuidadosamente projetado, com instalações de alta tecnologia.
 
-                Você encontrará diferenciais exclusivos, como uma área de musculação completa, salas de Squash, 
-                natação em ambientes inspirados no magnífico aquário de Okinawa, além de espaços 
-                dedicados ao atletismo, lutas e CrossFit. A diversidade de atividades garante que todos 
-                encontrem algo que se adapte ao seu estilo de vida. <br />A FITLIFE se torna parte do estilo de vida dos alunos, que se tornam frequentadores <br />constantes devido ao atendimento personalizado, à excelência técnica e ao compromisso com a conquista de resultados. <br /> Junte-se a nós e venha fazer parte dessa experiência
+                 Nossos diferenciais incluem uma área de musculação completa, salas de Squash, e uma piscina inspirada no magnífico aquário de Okinawa. Também dispomos de espaços dedicados ao atletismo, lutas e CrossFit. Essa diversidade de atividades garante que todos os alunos encontrem algo que se adapte ao seu estilo de vida.
+
+                A FITLIFE se torna parte do estilo de vida dos alunos, que se tornam frequentadores constantes devido ao nosso atendimento personalizado, à excelência técnica e ao compromisso com a conquista de resultados.
             </p>
     
             <div style={{ marginLeft: '20px' }}>
