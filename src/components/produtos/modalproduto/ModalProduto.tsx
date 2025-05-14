@@ -7,8 +7,8 @@ function ModalProduto() {
   return (
     <>
       <Popup trigger={
-        <button className='border rounded px-4 py-2 hover:bg-white hover:text-indigo-800'>
-          Novo Treino
+        <button className='border hover:border-red-700 rounded px-4 py-2 hover:bg-red-700 hover:text-white'>
+          Registrar Novo Treino
         </button>
       } modal >
         <FormProduto />

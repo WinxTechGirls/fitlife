@@ -140,7 +140,7 @@ function FormProduto() {
     const carregandoNivel = nivel.dificuldade === '';
 
     return (
-        <div className="container flex flex-col mx-auto items-center">
+        <div className="container flex flex-col mx-auto items-center text-black">
             <h1 className="text-4xl text-center my-8">
                 {id !== undefined ? 'Editar treino' : 'Cadastrar Treino'}
             </h1>
@@ -186,7 +186,7 @@ function FormProduto() {
                     <label htmlFor="duracao">Duração do treino</label>
                     <input
                         type="duracao"
-                        placeholder="duracao em minutos"
+                        placeholder="duracao em segundos"
                         name="duracao"
                         required
                         className="border-2 border-slate-700 rounded p-2"

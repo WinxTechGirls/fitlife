@@ -40,20 +40,19 @@ function ListaProdutos() {
   return (
     <>
       {produtos.length === 0 && (
-        <div className="text-center my-4">
+        <div className="text-center montserrat my-4">
           <DNA visible={true} height="200" width="200" ariaLabel="dna-loading" wrapperStyle={{}} wrapperClass="dna-wrapper mx-auto" />
           <p className="text-lg font-bold mt-4">Não há produtos cadastrados!</p>
         </div>
       )}
       {produtos.length > 0 && (
-        <div className="flex justify-center w-full my-4">
-          <div className="container flex flex-col mx-2">
-            <div className='container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+        <div className="container mx-auto">
+          <h1 className="bg-red-800 rounded-sm w-fit p-4 text-center font-semibold text-4xl my-8">Treinos Registrados</h1>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-5">
               {produtos.map((produto) => (
                 <CardProdutos key={produto.id} produto={produto} />
               ))}
             </div>
-          </div>
         </div>
       )}
     </>

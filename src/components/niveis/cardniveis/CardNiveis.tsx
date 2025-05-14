@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Nivel from '../../../models/Nivel'
+import { PencilSimple, TrashSimple } from '@phosphor-icons/react';
  
 interface CardNiveisProps {
   nivel: Nivel
@@ -7,17 +8,14 @@ interface CardNiveisProps {
  
 function CardNiveis({ nivel }: CardNiveisProps) {
   return (
-    <div className='border flex flex-col rounded-2xl overflow-hidden justify-between'>
-      <header className='py-2 px-6 bg-neutral-800 text-white font-bold text-2xl'>
-        Nível
-      </header>
-      <p className='p-8 text-3xl bg-slate-200 h-full'>{nivel.dificuldade}</p>
+    <div className='bg-neutral-950/70 backdrop-blur-md flex rounded-2xl justify-between p-5 lg:w-1/2'>
+      <p className='p-8 text-2xl'>{nivel.dificuldade}</p>
       <div className="flex">
-    <Link to={`/editarnivel/${nivel.id}`} className='w-full text-slate-100 bg-green-400 hover:bg-indigo-800 flex items-center justify-center py-2'>
-          <button>Editar</button>
+        <Link to={`/editarnivel/${nivel.id}`} className='w-full hover:text-emerald-600 flex items-center justify-center p-5'>
+          <PencilSimple size={32} />
         </Link>
-        <Link to={`/deletarnivel/${nivel.id}`} className='text-slate-100 bg-red-400 hover:bg-red-700 w-full flex items-center justify-center'>
-          <button>Deletar</button>
+        <Link to={`/deletarnivel/${nivel.id}`} className=' hover:text-red-700 w-full flex items-center justify-center p-5'>
+          <TrashSimple size={32} />
         </Link>
       </div>
     </div>

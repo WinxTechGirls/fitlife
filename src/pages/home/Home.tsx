@@ -1,47 +1,36 @@
+import { useContext, useEffect } from "react"
 import ModalProduto from "../../components/produtos/modalproduto/ModalProduto"
+import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../../contexts/AuthContext"
+import ListaProdutos from "../../components/produtos/listaprodutos/ListaProdutos"
 
 function Home() {
+
+    const navigate = useNavigate()
+    const { usuario } = useContext(AuthContext)
+    
+    useEffect(() => {
+        if (usuario.token === "") {
+            alert("Você precisa estar logado!")
+            navigate("/")
+        }
+    }, [usuario.token])
+
     return (
         <>
-            <div className="bg-black justify-center">
-                <div className='container grid grid-cols-2 text-white'>
-                    <div className="flex flex-col gap-4 items-center justify-center py-4">
-                        <h2 className='text-5xl font-bold font-serif  text-red-800'>
-                            ACADEMIA < br />
-                            <span className="ml-10 text-red-800">FITLIFE</span> 
-                            <div className="mt-5 text-sm ml-20">
-                                <ModalProduto />
-                            </div>
-                        </h2>
-
-                       
-                    </div>
-
-                    <div className="flex justify-center ">
-                        <img
-                            src="https://images.pexels.com/photos/4753996/pexels-photo-4753996.jpeg"
-                            alt="Imagem Página Home"
-                            className='w-2/4'
-                        />
-                    </div>
+            <div className="bg-[url(src/assets/banner-home.jpg)] w-full bg-cover flex justify-center">
+                <div className="container py-30 text-white font-medium montserrat text-shadow-xs">
+                    <h2 className='text-5xl my-6 text-shadow-xs'>
+                        Bem-vindo, {usuario.nome}!
+                    </h2>
+                    <p className="text-2xl my-4">
+                        Organize, personalize e acompanhe os treinos dos <br/> seus alunos de forma simples e eficiente.
+                    </p>
+                    <ModalProduto />
                 </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-            <p className="text-justify font-serif" style={{ lineHeight: '1.9', maxWidth: '600px', margin: '200px 20px 0 30px' }}>
-                 A FITLIFE é mais do que uma academia; é um espaço dedicado ao condicionamento físico e à saúde de nossos alunos. Acreditamos na importância de melhorar a qualidade de vida, tanto no aspecto físico quanto emocional. Para isso, oferecemos um ambiente amplo e cuidadosamente projetado, com instalações de alta tecnologia.
+            <ListaProdutos/>
 
-                 Nossos diferenciais incluem uma área de musculação completa, salas de Squash, e uma piscina inspirada no magnífico aquário de Okinawa. Também dispomos de espaços dedicados ao atletismo, lutas e CrossFit. Essa diversidade de atividades garante que todos os alunos encontrem algo que se adapte ao seu estilo de vida.
-
-                A FITLIFE se torna parte do estilo de vida dos alunos, que se tornam frequentadores constantes devido ao nosso atendimento personalizado, à excelência técnica e ao compromisso com a conquista de resultados.
-            </p>
-    
-            <div style={{ marginLeft: '20px' }}>
-            <video autoPlay loop muted>
-            <source src="src/assets/video/4367573-hd_1920_1080_30fps.mp4" />
-            </video>
-            </div>
-            
-            </div>
             
         </>
     )

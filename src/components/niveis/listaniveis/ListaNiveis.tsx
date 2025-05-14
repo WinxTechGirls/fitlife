@@ -35,13 +35,14 @@ function ListaNiveis() {
 
   return (
     <>
-      <div className="bg-neutral-900 h-screen flex justify-center items-center">
+      <div className="bg-[url(src/assets/banner-home.jpg)] bg-cover h-screen flex justify-center">
         {niveis.length === 0 && (
           <DNA visible={true} height="200" width="200" ariaLabel="dna-loading" wrapperStyle={{}} wrapperClass="dna-wrapper mx-auto" />
         )}
-        <div className="container flex flex-wrap justify-center gap-12">
+        <div className="container flex-col justify-center space-y-5 p-5">
+          <h1 className="w-fit text-center font-semibold text-4xl my-8">Níveis de Intensidade de Treino</h1>
           {niveis.map((nivel) => (
-            <div key={nivel.id} className="bg-red-800 p-8 rounded-lg shadow-md w-[400px] h-[300px]">
+            <div key={nivel.id}>
               <CardNiveis nivel={nivel} />
             </div>
           ))}
