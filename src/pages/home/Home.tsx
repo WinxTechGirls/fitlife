@@ -18,7 +18,7 @@ function Home() {
 
     return (
         <>
-            <div className="bg-[url(src/assets/banner-home.jpg)] w-full bg-cover flex justify-center">
+            <div className="bg-[url(/banner-home.jpg)] w-full bg-cover flex justify-center">
                 <div className="container py-30 text-white font-medium montserrat text-shadow-xs">
                     <h2 className='text-5xl my-6 text-shadow-xs'>
                         Bem-vindo, {usuario.nome}!

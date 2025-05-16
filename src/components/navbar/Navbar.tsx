@@ -23,7 +23,7 @@ function Navbar() {
 
             <div className="container flex justify-between text-lg">
                 <Link to='/home' className="text-2xl font-bold font-serif">
-                <img src="src/assets/Logo-Fitlife-branco.png" className="max-h-10"/>
+                <img src="/Logo-Fitlife-branco.png" className="max-h-10"/>
                 </Link>
 
                 <div className='flex gap-8 items-center'>

@@ -17,7 +17,7 @@ function CardProduto({ produto }: CardProdutosProps) {
             <div className='text-white flex-col space-y-4'>
                 <h2 className='text-lg font-bold uppercase'>{produto.nome}</h2> 
                     <div className='flex-col space-y-2'> 
-                        <p className='flex items-center gap-2'>Nível: {produto.nivel.dificuldade}{produto.nivel.dificuldade.toLowerCase() === 'iniciante' && (
+                        <div className='flex items-center gap-2'><span>Nível: {produto.nivel.dificuldade}</span>{produto.nivel.dificuldade.toLowerCase() === 'iniciante' && (
                         <p className='flex items-center'>
                             <Barbell size={20} className='text-red-600' />
                         </p>
@@ -43,7 +43,7 @@ function CardProduto({ produto }: CardProdutosProps) {
                                 <Barbell size={20}/>
                             </p>
                             )}
-                        </p>
+                        </div>
                         <p>{produto?.descricao}</p>
                     </div>
                     <div>
