@@ -75,7 +75,7 @@ function DeletarProduto() {
     
     if (!produto || !produto.nivel) {
         return (
-             <div className="flex items-center w-fit mx-auto">
+             <div className="flex items-center w-fit mx-auto p-15">
                 <Oval
                     visible={true}
                     height="80"
@@ -86,7 +86,7 @@ function DeletarProduto() {
                     wrapperStyle={{}}
                     wrapperClass=""
                     />
-                <p className="text-white text-center px-5">Carregando produto...</p>
+                <p className="text-white text-center px-5">Carregando treino...</p>
             </div>
         );
     }
@@ -158,23 +158,9 @@ function DeletarProduto() {
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             
             <p className='text-center text-3xl font-semibold my-7'>
-                    Você tem certeza de que deseja apagar esse treino?
+                    Você tem certeza de que deseja apagar o treino acima?
             </p>
             <div className="flex justify-center space-x-3.5">
                 <button 

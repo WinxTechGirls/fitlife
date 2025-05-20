@@ -15,6 +15,7 @@ import FormProduto from './components/produtos/formproduto/FormProduto';
 import DeletarProduto from './components/produtos/deletarproduto/DeletarProduto';
 import FormNivel from './components/niveis/formnivel/FormNivel';
 import ListaProdutos from './components/produtos/listaprodutos/ListaProdutos';
+import SobreNos from './pages/sobreNos/SobreNos';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
               <Route path="/editarproduto/:id" element={<FormProduto />} />
               <Route path="/deletarproduto/:id" element={<DeletarProduto />} />
               <Route path="/perfil" element={<Perfil />} />
+              <Route path="/sobrenos" element={<SobreNos />} />
           </Routes>
         </div>
         <Footer />

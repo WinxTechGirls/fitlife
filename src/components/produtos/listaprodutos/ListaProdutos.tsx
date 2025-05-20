@@ -4,16 +4,18 @@ import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
 import Produto from "../../../models/Produto";
 import { buscar } from "../../../services/Service";
-import { DNA } from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 
 function ListaProdutos() {
   const navigate = useNavigate();
   const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
   async function buscarProdutos() {
     try {
+      setIsLoading(true)
       await buscar('/produtos', setProdutos, {
         headers: {
           Authorization: token,
@@ -24,6 +26,7 @@ function ListaProdutos() {
         handleLogout()
       }
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -38,23 +41,35 @@ function ListaProdutos() {
   }, [produtos.length])
 
   return (
-    <>
-      {produtos.length === 0 && (
-        <div className="text-center montserrat my-4">
-          <DNA visible={true} height="200" width="200" ariaLabel="dna-loading" wrapperStyle={{}} wrapperClass="dna-wrapper mx-auto" />
+    <div className="container mx-auto montserrat">
+      {isLoading ? (
+        <div className="p-15 w-fit mx-auto">
+          <Oval
+            visible={true}
+            height="80"
+            width="80"
+            color="#d00c0c"
+            secondaryColor ="#a71c1c"
+            ariaLabel="oval-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            />
         </div>
-      )}
-      {produtos.length > 0 && (
-        <div className="container mx-auto">
+      ) : produtos.length == 0 ?(
+        <p className="text-center p-15 text-5xl font-medium">
+          Nenhum treino cadastrado até o momento.
+        </p>
+      ) : (
+        <>
           <h1 className="w-fit p-4 text-center font-semibold text-4xl my-8">Treinos Registrados</h1>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-5">
-              {produtos.map((produto) => (
-                <CardProdutos key={produto.id} produto={produto} />
-              ))}
-            </div>
-        </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-5">
+            {produtos.map((produto) => (
+              <CardProdutos key={produto.id} produto={produto} />
+            ))}
+          </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
 

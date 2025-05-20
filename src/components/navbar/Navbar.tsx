@@ -21,12 +21,12 @@ function Navbar() {
         componente = (
         <div className='w-full text-white bg-red-800 flex justify-center py-4 montserrat'>
 
-            <div className="container flex justify-between text-lg">
-                <Link to='/home' className="text-2xl font-bold font-serif">
+            <div className="container flex flex-col lg:flex-row lg:justify-between">
+                <Link to='/home' className="text-2xl flex justify-center lg:justify-start">
                 <img src="/Logo-Fitlife-branco.png" className="max-h-10"/>
                 </Link>
 
-                <div className='flex gap-8 items-center'>
+                <div className='flex flex-col lg:flex-row gap-8 items-center'>
                     <Link to='/produtos' className='hover:underline'>Treinos</Link>
                     <Link to='/niveis' className='hover:underline'>Niveis</Link>
                     <Link to='/cadastrarnivel' className='hover:underline'>Cadastrar nível</Link>

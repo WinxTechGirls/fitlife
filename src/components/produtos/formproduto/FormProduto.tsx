@@ -153,7 +153,7 @@ function FormProduto() {
                         placeholder="Titulo"
                         name="nome"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={produto.nome}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
@@ -165,7 +165,7 @@ function FormProduto() {
                         placeholder="Descricao"
                         name="descricao"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={produto.descricao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
@@ -176,7 +176,7 @@ function FormProduto() {
                         type="text"
                         placeholder="URL foto"
                         name="foto"
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={produto.foto}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
@@ -188,7 +188,7 @@ function FormProduto() {
                         placeholder="duracao em segundos"
                         name="duracao"
                         required
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={produto.duracao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
@@ -211,7 +211,7 @@ function FormProduto() {
                 <button
                     type='submit'
                     className='rounded disabled:bg-stone-500 bg-red-700 hover:bg-red-800
-                               text-white font-bold w-1/2 mx-auto py-2 flex justify-center'
+                               text-white font-semibold w-1/2 mx-auto py-2 flex justify-center'
                     disabled={carregandoNivel}
                 >
                     {isLoading ?

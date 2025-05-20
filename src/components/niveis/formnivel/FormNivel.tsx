@@ -107,7 +107,7 @@ function FormNivel() {
                         type="text"
                         placeholder="Escreva o nome do nível"
                         name='dificuldade'
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={nivel.dificuldade}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />

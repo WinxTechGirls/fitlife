@@ -72,7 +72,7 @@ function Cadastro() {
         <form className='flex justify-center col-start-2 items-center flex-col w-full gap-3 bg-neutral-950/70 backdrop-blur-md px-15 h-full text-slate-100 ' 
           onSubmit={cadastrarNovoUsuario}>
           <h2 className='text-5xl'>Cadastrar</h2>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="nome">Nome</label>
             <input
               type="text"
@@ -84,7 +84,7 @@ function Cadastro() {
              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="usuario">Email</label>
             <input
               type="text"
@@ -96,7 +96,7 @@ function Cadastro() {
              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="foto">Foto</label>
             <input
               type="text"
@@ -108,7 +108,7 @@ function Cadastro() {
              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="senha">Senha</label>
             <input
               type="password"
@@ -120,7 +120,7 @@ function Cadastro() {
              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
             />
           </div>
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="confirmarSenha">Confirmar Senha</label>
             <input
               type="password"
