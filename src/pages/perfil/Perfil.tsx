@@ -42,7 +42,7 @@ function Perfil() {
 			<div className="bg-[url(bg-niveis.jpg)] bg-cover mx-auto my-4 rounded-2xl overflow-hidden p-5">
 				<div className="w-fit mx-auto my-10 text-lg bg-neutral-950/70 backdrop-blur-md rounded-2xl p-15 flex-col space-y-5">
 					<img
-						className="rounded-full w-56 mx-auto border-8 border-white relative z-10"
+						className="rounded-full w-56 h-56 mx-auto border-8 border-white"
 						src={usuario?.foto || 'https://www.svgrepo.com/show/192244/man-user.svg'}
 						alt={`Foto de perfil de ${usuario.nome}`}
 					/>

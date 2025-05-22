@@ -3,4 +3,6 @@
     padding-bottom: 2rem;
     background: rgba(0, 0, 0, 0.7); 
     backdrop-filter: blur(10px); 
+    overflow-y: auto;
+    max-height: 90vh;
 }

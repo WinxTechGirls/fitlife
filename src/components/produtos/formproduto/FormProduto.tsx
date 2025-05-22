@@ -140,7 +140,7 @@ function FormProduto() {
     const carregandoNivel = nivel.dificuldade === '';
 
     return (
-        <div className="container flex flex-col mx-auto items-center text-white montserrat">
+        <div className="container flex flex-col mx-auto items-center text-white montserrat ">
             <h1 className="text-4xl text-center my-8">
                 {id !== undefined ? 'Editar treino' : 'Cadastrar Treino'}
             </h1>
@@ -160,15 +160,26 @@ function FormProduto() {
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="descricao">Descricao do treino</label>
-                    <input
-                        type="text"
-                        placeholder="Descricao"
+                    <textarea
+                        placeholder="Descrição"
                         name="descricao"
                         required
-                        className="border-2 rounded p-2"
+                        className="border-2 rounded p-2 resize-y min-h-[100px]"
                         value={produto.descricao}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                        onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                        setProduto({
+                            ...produto,
+                            descricao: e.target.value,
+                            nivel: nivel,
+                            usuario: usuario,
+                            })
+                        }
                     />
+                     {(produto.descricao?.length > 1000 || produto.descricao?.length < 5) && (
+                        <span className="text-sm text-red-500">
+                            A descrição deve ter entre 5 e 1000 caracteres.
+                        </span>
+                        )}
                 </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="foto">Foto</label>

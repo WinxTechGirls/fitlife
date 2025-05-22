@@ -12,7 +12,7 @@ function Footer() {
 
     if (usuario.token){
         componente = (
-        <div className="flex justify-center  text-red-800 montserrat bg-neutral-950">
+        <div className="flex justify-center  text-red-700 montserrat bg-neutral-950">
             <div className="container flex flex-col items-center py-4">
                 <p className='text-xl font-bold'>
                         FitLife | Copyright: {data}
