@@ -21,7 +21,7 @@ function Footer() {
                 <a href='https://github.com/orgs/WinxTechGirls/repositories'
                 target="_blank"
                 className='flex gap-2 items-center'>
-                    <ImGithub size={32} weight='bold' className='' />
+                    <ImGithub size={32} className='' />
                     <p>WinxTechGirls</p>
                 </a>
                 <div className="mt-4">
