@@ -39,7 +39,7 @@ function ListaNiveis() {
   }, [])
 
   return (
-    <div className="bg-[url(bg-niveis.jpg)] bg-cover min-h-screen flex montserrat">
+    <div className="bg-[url(/bg-niveis.jpg)] bg-cover min-h-screen flex montserrat">
       <div className="container mx-auto">
         {isLoading ? (
           <div className="w-fit m-auto p-15">
