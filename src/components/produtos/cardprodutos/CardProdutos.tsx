@@ -8,61 +8,46 @@ interface CardProdutosProps {
 
 function CardProduto({ produto }: CardProdutosProps) {
     return (
-        <div className="bg-gray-800 min-h-screen flex items-center justify-center p-4">
-            <div className='border-slate-900 border 
-                flex flex-col rounded overflow-hidden justify-between bg-black text-white max-w-md w-full'>
+        <div className="montserrat bg-neutral-950/70 backdrop-blur-md rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-5 gap-5">
+            <img
+                src={produto.foto || 'https://st2.depositphotos.com/4410397/7376/v/450/depositphotos_73768149-stock-illustration-dumbbell-icon.jpg'}
+                className='object-cover rounded-sm lg:w-120 lg:h-full md:h-full'
+                alt={produto.nome} />
 
-                <div>
-                    <div className="flex w-full bg-black py-2 px-4 items-center gap-4">
-                        <img
-                            src={produto.usuario?.foto || 'https://www.svgrepo.com/show/192244/man-user.svg'}
-                            className='h-12 w-12 rounded-full'
-                            alt={produto.usuario?.nome} />
-                        <h3 className='text-lg font-bold text-center uppercase'>
-                            {produto.usuario?.nome}
-                        </h3>
-                    </div>
-
-                    <div className='p-4'>
-                        <h2 className='text-lg font-bold uppercase'>{produto.nome}</h2>
-                        <p className='flex gap-2 items-center'>Nível: {produto.nivel.dificuldade}{produto.nivel.dificuldade.toLowerCase() === 'iniciante' && (
-                        <p className='flex gap-2 items-center'>
-                            <Barbell size={18} className='text-red-400' />
+            <div className='text-white flex-col space-y-4'>
+                <h2 className='text-lg font-bold uppercase'>{produto.nome}</h2> 
+                    <div className='flex-col space-y-2'> 
+                        <div className='flex items-center gap-2'><span>Nível: {produto.nivel.dificuldade}</span>{produto.nivel.dificuldade.toLowerCase() === 'iniciante' && (
+                        <p className='flex items-center'>
+                            <Barbell size={20} className='text-red-600' />
                         </p>
                             )}
                             {produto.nivel.dificuldade.toLowerCase() === 'intermediário' && (
-                            <p className='flex gap-2 items-center'>
-                                <Barbell size={18} className='text-red-400' />
-                                <Barbell size={18} className='text-red-400' />
+                            <p className='flex gap-2 items-center text-red-600'>
+                                <Barbell size={20}/>
+                                <Barbell size={20}/>
                             </p>
                             )}
                             {produto.nivel.dificuldade.toLowerCase() === 'avançado' && (
-                            <p className='flex gap-2 items-center'>
-                                <Barbell size={18} className='text-red-400' />
-                                <Barbell size={18} className='text-red-400' />
-                                <Barbell size={18} className='text-red-400' />
+                            <p className='flex gap-2 items-center text-red-600'>
+                                <Barbell size={20}/>
+                                <Barbell size={20}/>
+                                <Barbell size={20}/>
                             </p>
                             )}
                             {produto.nivel.dificuldade.toLowerCase() === 'especialista' && (
-                            <p className='flex gap-2 items-center'>
-                                <Barbell size={18} className='text-red-400' />
-                                <Barbell size={18} className='text-red-400' />
-                                <Barbell size={18} className='text-red-400' />
-                                <Barbell size={18} className='text-red-400' />
+                            <p className='flex gap-2 items-center text-red-600'>
+                                <Barbell size={20}/>
+                                <Barbell size={20}/>
+                                <Barbell size={20}/>
+                                <Barbell size={20}/>
                             </p>
                             )}
-                        </p>
-
+                        </div>
                         <p>{produto?.descricao}</p>
                     </div>
-                    <div className='p-4'>
-                    <img
-                            src={produto.foto || 'https://st2.depositphotos.com/4410397/7376/v/450/depositphotos_73768149-stock-illustration-dumbbell-icon.jpg'}
-                            className='rounded-2xl'
-                            alt={produto.nome} />
-                    </div>
-                    <div className='p-4'>
-                        <h4 className='text-lg font-semibold uppercase'>Duração</h4>
+                    <div>
+                        <h4 className='font-medium'>Duração:</h4>
                         <p>
                         {(() => {
                                 const total = produto.duracao;
@@ -73,11 +58,22 @@ function CardProduto({ produto }: CardProdutosProps) {
                             })()}
                         </p>
                     </div>
+
+
+                <h3>Treino criado por:</h3>
+                <div className="flex items-center gap-3">
+                    <img
+                        src={produto.usuario?.foto || 'https://www.svgrepo.com/show/192244/man-user.svg'}
+                        className='h-10 w-10 rounded-full'
+                        alt={produto.usuario?.nome} />
+                    <h3 className='text-lg font-medium text-center'>
+                        {produto.usuario?.nome}
+                    </h3>
                 </div>
 
                 <div className="flex">
                     <Link to={`/editarproduto/${produto.id}`}
-                        className='w-1/2 text-white bg-black hover:bg-gray-800 
+                        className='w-1/2 text-white bg-cyan-950 hover:bg-gray-800 
                         flex items-center justify-center py-2'>
                         <button>Editar</button>
                     </Link>
@@ -89,6 +85,7 @@ function CardProduto({ produto }: CardProdutosProps) {
                 </div>
             </div>
         </div>
+        
     )
 }
 

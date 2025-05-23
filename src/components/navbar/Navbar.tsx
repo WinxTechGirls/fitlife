@@ -18,21 +18,24 @@ function Navbar() {
     let componente: ReactNode
 
     if (usuario.token != ''){
-        componente = (<div className='w-full bg-black text-white
-        flex justify-center py-4'>
+        componente = (
+        <div className='w-full text-white bg-red-800 flex justify-center py-4 montserrat'>
 
-        <div className="container flex justify-between text-lg">
-            <Link to='/home' className="text-2xl font-bold font-serif text-red-800">FitLife</Link>
+            <div className="container flex flex-col lg:flex-row lg:justify-between">
+                <Link to='/home' className="text-2xl flex justify-center lg:justify-start">
+                <img src="/Logo-Fitlife-branco.png" className="max-h-10"/>
+                </Link>
 
-            <div className='flex gap-4'>
-                <Link to='/produtos' className='hover:underline font-bold font-serif text-red-800'>Treinos</Link>
-                <Link to='/niveis' className='hover:underline font-bold font-serif text-red-800'>Niveis</Link>
-                <Link to='/cadastrarnivel' className='hover:underline font-bold font-serif text-red-800'>Cadastrar nível</Link>
-                <Link to='/perfil' className='hover:underline font-bold font-serif text-red-800'>Perfil</Link>
-                <Link to='' onClick={logout} className='hover:underline font-bold font-serif text-red-800'>Sair</Link>
+                <div className='flex flex-col lg:flex-row gap-8 items-center'>
+                    <Link to='/produtos' className='hover:underline'>Treinos</Link>
+                    <Link to='/niveis' className='hover:underline'>Niveis</Link>
+                    <Link to='/cadastrarnivel' className='hover:underline'>Cadastrar nível</Link>
+                    <Link to='/perfil' className='hover:underline'>Perfil</Link>
+                    <Link to='' onClick={logout} className='hover:underline'>Sair</Link>
+                </div>
             </div>
         </div>
-    </div>)
+        )
     }
     
     return (

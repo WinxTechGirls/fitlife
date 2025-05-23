@@ -5,7 +5,7 @@ export default interface Produto {
   id: number;
   nome: string;
   descricao: string;
-  foto: string;
+  foto?: string;
   duracao: number;
   nivel: Nivel | null;
   usuario: Usuario | null;

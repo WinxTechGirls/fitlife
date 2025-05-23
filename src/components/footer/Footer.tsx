@@ -1,6 +1,7 @@
-import { FacebookLogo, InstagramLogo, LinkedinLogo } from '@phosphor-icons/react'
 import { ReactNode, useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
+import { ImGithub } from 'react-icons/im'
+import { Link } from 'react-router-dom'
 
 function Footer() {
 
@@ -10,16 +11,26 @@ function Footer() {
     let componente: ReactNode
 
     if (usuario.token){
-        componente = (<div className="flex justify-center bg-black text-white">
+        componente = (
+        <div className="flex justify-center  text-red-700 montserrat bg-neutral-950">
             <div className="container flex flex-col items-center py-4">
-                <p className='text-xl font-bold font-serif text-red-800'>
-                        Academia FitLife | Copyright: {data}
+                <p className='text-xl font-bold'>
+                        FitLife | Copyright: {data}
                     </p>
-                <p className='text-lg text-red-800'>Acesse nossas redes sociais</p>
-                <div className='flex gap-2'>
-                <LinkedinLogo size={48} weight='bold' className='text-red-800' />
-                <InstagramLogo size={48} weight='bold' className='text-red-800' />
-                <FacebookLogo size={48} weight='bold' className='text-red-800' />
+                <p className='text-lg'>Explore mais de nossos projetos:</p>
+                <a href='https://github.com/orgs/WinxTechGirls/repositories'
+                target="_blank"
+                className='flex gap-2 items-center'>
+                    <ImGithub size={32} weight='bold' className='' />
+                    <p>WinxTechGirls</p>
+                </a>
+                <div className="mt-4">
+                    <Link
+                    to="/sobrenos"
+                    className="hover:underline text-sm font-semibold text-white"
+                    >
+                    Sobre as Desenvolvedoras
+                    </Link>
                 </div>
             </div>
         </div>)

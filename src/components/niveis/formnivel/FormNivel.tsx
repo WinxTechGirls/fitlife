@@ -102,12 +102,12 @@ function FormNivel() {
 
             <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovoNivel}>
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="dificuldade">Dificuldade do nivel</label>
+                    <label htmlFor="dificuldade">Dificuldade do nível</label>
                     <input
                         type="text"
-                        placeholder="Descreva aqui qual a dificuldade"
+                        placeholder="Escreva o nome do nível"
                         name='dificuldade'
-                        className="border-2 border-slate-700 rounded p-2"
+                        className="border-2 rounded p-2"
                         value={nivel.dificuldade}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { DNA } from "react-loader-spinner";
+import { Oval } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import Nivel from "../../../models/Nivel";
@@ -9,17 +9,22 @@ import { buscar } from "../../../services/Service";
 function ListaNiveis() {
   const navigate = useNavigate();
   const [niveis, setNiveis] = useState<Nivel[]>([])
+  const [isLoading, setIsLoading] = useState(true)
   const { usuario, handleLogout } = useContext(AuthContext)
   const token = usuario.token
 
   async function buscarNiveis() {
+    setIsLoading(true)
     try {
-      await buscar('/niveis', setNiveis, { headers: { Authorization: token } })
+      await buscar('/niveis', setNiveis, {
+        headers: { Authorization: token }
+      })
     } catch (error: any) {
       if (error.toString().includes('403')) {
         handleLogout()
       }
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -31,23 +36,40 @@ function ListaNiveis() {
 
   useEffect(() => {
     buscarNiveis()
-  }, [niveis.length])
+  }, [])
 
   return (
-    <>
-      <div className="bg-neutral-900 h-screen flex justify-center items-center">
-        {niveis.length === 0 && (
-          <DNA visible={true} height="200" width="200" ariaLabel="dna-loading" wrapperStyle={{}} wrapperClass="dna-wrapper mx-auto" />
+    <div className="bg-[url(bg-niveis.jpg)] bg-cover min-h-screen flex montserrat">
+      <div className="container mx-auto">
+        {isLoading ? (
+          <div className="w-fit m-auto p-15">
+            <Oval
+              visible={true}
+              height="80"
+              width="80"
+              color="#d00c0c"
+              secondaryColor="#a71c1c"
+              ariaLabel="oval-loading"
+            />
+          </div>
+        ) : niveis.length === 0 ? (
+          <p className="text-center p-15 text-5xl font-medium">
+            Nenhum nível cadastrado até o momento.
+          </p>
+        ) : (
+          <div className="container flex-col space-y-5 p-5">
+            {niveis.map((nivel) => (
+              <div className="lg:w-1/2">
+                <h1 className="w-fit text-center font-semibold text-4xl my-8">Níveis de Intensidade de Treino</h1>
+                <div key={nivel.id}>
+                  <CardNiveis nivel={nivel} />
+                </div>
+              </div>
+            ))}
+          </div>
         )}
-        <div className="container flex flex-wrap justify-center gap-12">
-          {niveis.map((nivel) => (
-            <div key={nivel.id} className="bg-red-800 p-8 rounded-lg shadow-md w-[400px] h-[300px]">
-              <CardNiveis nivel={nivel} />
-            </div>
-          ))}
-        </div>
       </div>
-    </>
+    </div>
   )
 }
 
