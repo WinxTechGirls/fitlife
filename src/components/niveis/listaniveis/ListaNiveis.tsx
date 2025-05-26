@@ -58,9 +58,9 @@ function ListaNiveis() {
           </p>
         ) : (
           <div className="container flex-col space-y-5 p-5">
+            <h1 className="w-fit text-center font-semibold text-4xl my-8">Níveis de Intensidade de Treino</h1>
             {niveis.map((nivel) => (
               <div className="lg:w-1/2">
-                <h1 className="w-fit text-center font-semibold text-4xl my-8">Níveis de Intensidade de Treino</h1>
                 <div key={nivel.id}>
                   <CardNiveis nivel={nivel} />
                 </div>
