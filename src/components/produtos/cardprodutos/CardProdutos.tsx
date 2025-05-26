@@ -64,7 +64,7 @@ function CardProduto({ produto }: CardProdutosProps) {
                 <div className="flex items-center gap-3">
                     <img
                         src={produto.usuario?.foto || 'https://www.svgrepo.com/show/192244/man-user.svg'}
-                        className='h-10 w-10 rounded-full'
+                        className='h-10 w-10 rounded-full object-cover'
                         alt={produto.usuario?.nome} />
                     <h3 className='text-lg font-medium text-center'>
                         {produto.usuario?.nome}
