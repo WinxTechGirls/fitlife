@@ -1,12 +1,12 @@
 import { useState, useContext, useEffect, ChangeEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import Produto from "../../../models/Produto";
+import Treino from "../../../models/Treino";
 import Nivel from "../../../models/Nivel";
 import { buscar, atualizar, cadastrar } from "../../../services/Service";
 import { RotatingLines } from "react-loader-spinner";
 
-function FormProduto() {
+function FormTreino() {
 
     const navigate = useNavigate();
 
@@ -14,16 +14,16 @@ function FormProduto() {
     const [niveis, setNiveis] = useState<Nivel[]>([])
 
     const [nivel, setNivel] = useState<Nivel>({ id: 0, dificuldade: '', })
-    const [produto, setProduto] = useState<Produto>({} as Produto)
+    const [treino, setTreino] = useState<Treino>({} as Treino)
 
     const { id } = useParams<{ id: string }>()
 
     const { usuario, handleLogout } = useContext(AuthContext)
     const token = usuario.token
 
-    async function buscarProdutoPorId(id: string) {
+    async function buscarTreinoPorId(id: string) {
         try {
-            await buscar(`/produtos/${id}`, setProduto, {
+            await buscar(`/treinos/${id}`, setTreino, {
                 headers: { Authorization: token }
             })
         } catch (error: any) {
@@ -68,20 +68,20 @@ function FormProduto() {
         buscarNiveis()
 
         if (id !== undefined) {
-            buscarProdutoPorId(id)
+            buscarTreinoPorId(id)
         }
     }, [id])
 
     useEffect(() => {
-        setProduto({
-            ...produto,
+        setTreino({
+            ...treino,
             nivel: nivel,
         })
     }, [nivel])
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
-        setProduto({
-            ...produto,
+        setTreino({
+            ...treino,
             [e.target.name]: e.target.value,
             nivel: nivel,
             usuario: usuario,
@@ -89,16 +89,16 @@ function FormProduto() {
     }
 
     function retornar() {
-        navigate('/produtos');
+        navigate('/treinos');
     }
 
-    async function gerarNovoProduto(e: ChangeEvent<HTMLFormElement>) {
+    async function gerarNovoTreino(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault()
         setIsLoading(true)
 
         if (id !== undefined) {
             try {
-                await atualizar(`/produtos`, produto, setProduto, {
+                await atualizar(`/treinos`, treino, setTreino, {
                     headers: {
                         Authorization: token,
                     },
@@ -116,7 +116,7 @@ function FormProduto() {
 
         } else {
             try {
-                await cadastrar(`/produtos`, produto, setProduto, {
+                await cadastrar(`/treinos`, treino, setTreino, {
                     headers: {
                         Authorization: token,
                     },
@@ -128,7 +128,7 @@ function FormProduto() {
                 if (error.toString().includes('403')) {
                     handleLogout()
                 } else {
-                    alert('Erro ao cadastrar o Produto');
+                    alert('Erro ao cadastrar o Treino');
                 }
             }
         }
@@ -145,7 +145,7 @@ function FormProduto() {
                 {id !== undefined ? 'Editar treino' : 'Cadastrar Treino'}
             </h1>
 
-            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovoProduto}>
+            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovoTreino}>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="titulo">Título do Treino</label>
                     <input
@@ -154,7 +154,7 @@ function FormProduto() {
                         name="nome"
                         required
                         className="border-2 rounded p-2"
-                        value={produto.nome}
+                        value={treino.nome}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
@@ -165,17 +165,17 @@ function FormProduto() {
                         name="descricao"
                         required
                         className="border-2 rounded p-2 resize-y min-h-[100px]"
-                        value={produto.descricao}
+                        value={treino.descricao}
                         onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                        setProduto({
-                            ...produto,
+                        setTreino({
+                            ...treino,
                             descricao: e.target.value,
                             nivel: nivel,
                             usuario: usuario,
                             })
                         }
                     />
-                     {(produto.descricao?.length > 1000 || produto.descricao?.length < 5) && (
+                     {(treino.descricao?.length > 1000 || treino.descricao?.length < 5) && (
                         <span className="text-sm text-red-500">
                             A descrição deve ter entre 5 e 1000 caracteres.
                         </span>
@@ -188,7 +188,7 @@ function FormProduto() {
                         placeholder="URL foto"
                         name="foto"
                         className="border-2 rounded p-2"
-                        value={produto.foto}
+                        value={treino.foto}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
@@ -200,7 +200,7 @@ function FormProduto() {
                         name="duracao"
                         required
                         className="border-2 rounded p-2"
-                        value={produto.duracao}
+                        value={treino.duracao}
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                     />
                 </div>
@@ -209,7 +209,7 @@ function FormProduto() {
                     <select name="nivel" id="nivel" className='bg-neutral-900 border p-2 border-slate-800 rounded'
                         onChange={(e) => buscarNivelPorId(e.currentTarget.value)}
                     >
-                        <option value="" selected disabled>Selecione um Produto</option>
+                        <option value="" selected disabled>Selecione um Treino</option>
 
                         {niveis.map((nivel) => (
                             <>
@@ -241,4 +241,4 @@ function FormProduto() {
     );
 }
 
-export default FormProduto;
+export default FormTreino;

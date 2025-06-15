@@ -1,4 +1,4 @@
-import Produto from "./Produto";
+import Treino from "./Treino";
 
 export default interface Usuario {
   id?: number | null;
@@ -6,5 +6,5 @@ export default interface Usuario {
   usuario: string;
   foto: string;
   senha: string;
-  produto?: Produto[] | null;
+  treino?: Treino[] | null;
 }

@@ -1,7 +1,7 @@
-import Produto from "./Produto";
+import Treino from "./Treino";
 
 export default interface Nivel {
     id: number | null;
     dificuldade: string;
-    produto?: Produto[] | null;
+    treino?: Treino[] | null;
 }

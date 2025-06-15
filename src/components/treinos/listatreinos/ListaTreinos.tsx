@@ -1,22 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import CardProdutos from "../cardprodutos/CardProdutos";
+import CardTreinos from "../cardtreinos/CardTreinos";
 import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../../contexts/AuthContext";
-import Produto from "../../../models/Produto";
+import Treino from "../../../models/Treino";
 import { buscar } from "../../../services/Service";
 import { Oval } from "react-loader-spinner";
 
-function ListaProdutos() {
+function ListaTreinos() {
   const navigate = useNavigate();
-  const [produtos, setProdutos] = useState<Produto[]>([]);
+  const [treinos, setTreinos] = useState<Treino[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
-  async function buscarProdutos() {
+  async function buscarTreinos() {
     try {
       setIsLoading(true)
-      await buscar('/produtos', setProdutos, {
+      await buscar('/treinos', setTreinos, {
         headers: {
           Authorization: token,
         },
@@ -37,8 +37,8 @@ function ListaProdutos() {
   }, [token])
 
   useEffect(() => {
-    buscarProdutos()
-  }, [produtos.length])
+    buscarTreinos()
+  }, [treinos.length])
 
   return (
     <div className="container mx-auto montserrat">
@@ -55,7 +55,7 @@ function ListaProdutos() {
             wrapperClass=""
             />
         </div>
-      ) : produtos.length == 0 ?(
+      ) : treinos.length == 0 ?(
         <p className="text-center p-15 text-5xl font-medium">
           Nenhum treino cadastrado até o momento.
         </p>
@@ -63,8 +63,8 @@ function ListaProdutos() {
         <>
           <h1 className="w-fit p-4 text-center font-semibold text-4xl my-8">Treinos Registrados</h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-5">
-            {produtos.map((produto) => (
-              <CardProdutos key={produto.id} produto={produto} />
+            {treinos.map((treino) => (
+              <CardTreinos key={treino.id} treino={treino} />
             ))}
           </div>
         </>
@@ -73,4 +73,4 @@ function ListaProdutos() {
   );
 }
 
-export default ListaProdutos;
+export default ListaTreinos;

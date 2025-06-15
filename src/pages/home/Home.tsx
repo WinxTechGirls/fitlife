@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react"
-import ModalProduto from "../../components/produtos/modalproduto/ModalProduto"
+import ModalTreino from "../../components/treinos/modaltreino/ModalTreino"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/AuthContext"
-import ListaProdutos from "../../components/produtos/listaprodutos/ListaProdutos"
+import ListaTreinos from "../../components/treinos/listatreinos/ListaTreinos"
 
 function Home() {
 
@@ -26,10 +26,10 @@ function Home() {
                     <p className="text-2xl my-4">
                         Organize, personalize e acompanhe os treinos dos <br/> seus alunos de forma simples e eficiente.
                     </p>
-                    <ModalProduto />
+                    <ModalTreino />
                 </div>
             </div>
-            <ListaProdutos/>
+            <ListaTreinos/>
 
             
         </>

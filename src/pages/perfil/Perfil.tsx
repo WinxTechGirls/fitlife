@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom"
 
 import { AuthContext } from "../../contexts/AuthContext"
 import { buscar } from "../../services/Service"
-import Produto from "../../models/Produto"
-import CardProduto from "../../components/produtos/cardprodutos/CardProdutos"
+import Treino from "../../models/Treino"
+import CardTreino from "../../components/treinos/cardtreinos/CardTreinos"
 
 function Perfil() {
 	const navigate = useNavigate()
 
 	const { usuario } = useContext(AuthContext)
-	const [produtos, setProdutos] = useState<Produto[]>([])
+	const [treinos, setTreinos] = useState<Treino[]>([])
 
 	useEffect(() => {
 		if (usuario.token === "") {
@@ -20,22 +20,22 @@ function Perfil() {
 	}, [usuario.token])
 
 	useEffect(() => {
-		async function buscarProdutos() {
+		async function buscarTreinos() {
 			try {
-				await buscar("/produtos", setProdutos, {
+				await buscar("/treinos", setTreinos, {
 					headers: { Authorization: usuario.token }
 				})
 			} catch (error) {
-				console.error("Erro ao buscar produtos:", error)
+				console.error("Erro ao buscar treinos:", error)
 			}
 		}
 
 		if (usuario.id !== undefined) {
-			buscarProdutos()
+			buscarTreinos()
 		}
 	}, [usuario.id])
 
-	const produtosDoUsuario = produtos.filter(prod => prod.usuario?.id === usuario.id)
+	const treinosDoUsuario = treinos.filter(treino => treino.usuario?.id === usuario.id)
 
 	return (
 		<div className="container justify-center mx-auto montserrat">
@@ -53,12 +53,12 @@ function Perfil() {
 
 			<h2 className="text-3xl mt-8 mb-4">Treinos Criados por Você</h2>
 
-			{produtosDoUsuario.length === 0 ? (
+			{treinosDoUsuario.length === 0 ? (
 				<p className="text-lg text-center text-white mb-8">Você ainda não cadastrou nenhum treino.</p>
 			) : (
 				<div className="w-full lg:w-2/3 space-y-5 mb-12">
-					{produtosDoUsuario.map(prod => (
-						<CardProduto key={prod.id} produto={prod} />
+					{treinosDoUsuario.map(treino => (
+						<CardTreino key={treino.id} treino={treino} />
 					))}
 				</div>
 			)}

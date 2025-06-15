@@ -41,7 +41,7 @@ function SobreNos() {
         {membros.map((membro, index) => (
           <div
             key={index}
-            className="flex flex-col items-center p-4 rounded-2xl shadow-md hover:shadow-lg transition space-y-4 py-10 bg-neutral-800"
+            className="flex flex-col items-center p-4 rounded-2xl shadow-md hover:shadow-lg transition space-y-4 py-10 border border-red-600"
           >
             {membro.imagem ? (
               <img
