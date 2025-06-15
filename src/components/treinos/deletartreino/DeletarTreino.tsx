@@ -1,17 +1,17 @@
 import { useState, useContext, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../../../contexts/AuthContext"
-import Produto from "../../../models/Produto"
+import Treino from "../../../models/Treino"
 import { buscar, deletar } from "../../../services/Service"
 import { Oval, RotatingLines } from "react-loader-spinner"
 import { Barbell } from "@phosphor-icons/react"
 
-function DeletarProduto() {
+function DeletarTreino() {
 
     const navigate = useNavigate()
 
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [produto, setProduto] = useState<Produto>({} as Produto)
+    const [treino, setTreino] = useState<Treino>({} as Treino)
 
     const { id } = useParams<{ id: string }>()
 
@@ -20,7 +20,7 @@ function DeletarProduto() {
 
     async function buscarPorId(id: string) {
         try {
-            await buscar(`/produtos/${id}`, setProduto, {
+            await buscar(`/treinos/${id}`, setTreino, {
                 headers: {
                     'Authorization': token
                 }
@@ -45,23 +45,23 @@ function DeletarProduto() {
         }
     }, [id])
 
-    async function deletarProduto() {
+    async function deletarTreino() {
         setIsLoading(true)
 
         try {
-            await deletar(`/produtos/${id}`, {
+            await deletar(`/treinos/${id}`, {
                 headers: {
                     'Authorization': token
                 }
             })
 
-            alert('Produto apagada com sucesso')
+            alert('Treino apagada com sucesso')
 
         } catch (error: any) {
             if (error.toString().includes('403')) {
                 handleLogout()
             }else {
-                alert('Erro ao deletar o Produto.')
+                alert('Erro ao deletar o Treino.')
             }
         }
 
@@ -70,10 +70,10 @@ function DeletarProduto() {
     }
 
     function retornar() {
-        navigate("/produtos")
+        navigate("/treinos")
     }
     
-    if (!produto || !produto.nivel) {
+    if (!treino || !treino.nivel) {
         return (
              <div className="flex items-center w-fit mx-auto p-15">
                 <Oval
@@ -96,32 +96,32 @@ function DeletarProduto() {
 
             <div className="montserrat bg-neutral-950/70 backdrop-blur-md rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-5 gap-5">
                 <img
-                    src={produto.foto || 'https://st2.depositphotos.com/4410397/7376/v/450/depositphotos_73768149-stock-illustration-dumbbell-icon.jpg'}
+                    src={treino.foto || 'https://st2.depositphotos.com/4410397/7376/v/450/depositphotos_73768149-stock-illustration-dumbbell-icon.jpg'}
                     className='object-cover rounded-sm lg:w-120 lg:h-full md:h-full'
-                    alt={produto.nome} />
+                    alt={treino.nome} />
 
                 <div className='text-white flex-col space-y-4'>
-                    <h2 className='text-lg font-bold uppercase'>{produto.nome}</h2> 
+                    <h2 className='text-lg font-bold uppercase'>{treino.nome}</h2> 
                         <div className='flex-col space-y-2'> 
-                            <div className='flex items-center gap-2'><span>Nível: {produto.nivel.dificuldade}</span>{produto.nivel.dificuldade.toLowerCase() === 'iniciante' && (
+                            <div className='flex items-center gap-2'><span>Nível: {treino.nivel.dificuldade}</span>{treino.nivel.dificuldade.toLowerCase() === 'iniciante' && (
                             <p className='flex items-center'>
                                 <Barbell size={20} className='text-red-600' />
                             </p>
                                 )}
-                                {produto.nivel.dificuldade.toLowerCase() === 'intermediário' && (
+                                {treino.nivel.dificuldade.toLowerCase() === 'intermediário' && (
                                 <p className='flex gap-2 items-center text-red-600'>
                                     <Barbell size={20}/>
                                     <Barbell size={20}/>
                                 </p>
                                 )}
-                                {produto.nivel.dificuldade.toLowerCase() === 'avançado' && (
+                                {treino.nivel.dificuldade.toLowerCase() === 'avançado' && (
                                 <p className='flex gap-2 items-center text-red-600'>
                                     <Barbell size={20}/>
                                     <Barbell size={20}/>
                                     <Barbell size={20}/>
                                 </p>
                                 )}
-                                {produto.nivel.dificuldade.toLowerCase() === 'especialista' && (
+                                {treino.nivel.dificuldade.toLowerCase() === 'especialista' && (
                                 <p className='flex gap-2 items-center text-red-600'>
                                     <Barbell size={20}/>
                                     <Barbell size={20}/>
@@ -130,13 +130,13 @@ function DeletarProduto() {
                                 </p>
                                 )}
                             </div>
-                            <p>{produto?.descricao}</p>
+                            <p>{treino?.descricao}</p>
                         </div>
                         <div>
                             <h4 className='font-medium'>Duração:</h4>
                             <p>
                             {(() => {
-                                    const total = produto.duracao;
+                                    const total = treino.duracao;
                                     const h = Math.floor(total / 3600);
                                     const m = Math.floor((total % 3600) / 60);
                                     const s = total % 60;
@@ -149,11 +149,11 @@ function DeletarProduto() {
                     <h3>Treino criado por:</h3>
                     <div className="flex items-center gap-3">
                         <img
-                            src={produto.usuario?.foto || 'https://www.svgrepo.com/show/192244/man-user.svg'}
+                            src={treino.usuario?.foto || 'https://www.svgrepo.com/show/192244/man-user.svg'}
                             className='h-10 w-10 rounded-full'
-                            alt={produto.usuario?.nome} />
+                            alt={treino.usuario?.nome} />
                         <h3 className='text-lg font-medium text-center'>
-                            {produto.usuario?.nome}
+                            {treino.usuario?.nome}
                         </h3>
                     </div>
                 </div>
@@ -171,7 +171,7 @@ function DeletarProduto() {
                 <button 
                     className='border border-green-600 
                     hover:bg-green-600 w-fit py-3 px-5 rounded-sm'
-                    onClick={deletarProduto}>
+                    onClick={deletarTreino}>
                     
                     {isLoading ?
                         <RotatingLines
@@ -189,4 +189,4 @@ function DeletarProduto() {
     )
 }
 
-export default DeletarProduto
+export default DeletarTreino

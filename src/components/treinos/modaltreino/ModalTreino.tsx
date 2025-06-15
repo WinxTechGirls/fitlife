@@ -1,9 +1,9 @@
 import Popup from 'reactjs-popup';
-import FormProduto from '../formproduto/FormProduto';
+import FormTreino from '../formtreino/FormTreino';
 import 'reactjs-popup/dist/index.css';
-import './ModalProduto.css'
+import './ModalTreino.css'
 
-function ModalProduto() {
+function ModalTreino() {
   return (
     <>
       <Popup trigger={
@@ -11,10 +11,10 @@ function ModalProduto() {
           Registrar Novo Treino
         </button>
       } modal >
-        <FormProduto />
+        <FormTreino />
       </Popup>
     </>
   );
 }
 
-export default ModalProduto;
+export default ModalTreino;

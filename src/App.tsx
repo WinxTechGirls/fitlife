@@ -11,10 +11,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import ListaNiveis from './components/niveis/listaniveis/ListaNiveis';
 import DeletarNivel from './components/niveis/deletarnivel/DeletarNivel';
-import FormProduto from './components/produtos/formproduto/FormProduto';
-import DeletarProduto from './components/produtos/deletarproduto/DeletarProduto';
+import FormTreino from './components/treinos/formtreino/FormTreino';
+import DeletarTreino from './components/treinos/deletartreino/DeletarTreino';
 import FormNivel from './components/niveis/formnivel/FormNivel';
-import ListaProdutos from './components/produtos/listaprodutos/ListaProdutos';
+import ListaTreinos from './components/treinos/listatreinos/ListaTreinos';
 import SobreNos from './pages/sobreNos/SobreNos';
 
 function App() {
@@ -34,10 +34,10 @@ function App() {
               <Route path="/cadastrarnivel" element={<FormNivel />} />
               <Route path="/editarnivel/:id" element={<FormNivel />} />
               <Route path="/deletarnivel/:id" element={<DeletarNivel />} />
-              <Route path="/produtos" element={<ListaProdutos />} />
-              <Route path="/cadastrarproduto" element={<FormProduto />} />
-              <Route path="/editarproduto/:id" element={<FormProduto />} />
-              <Route path="/deletarproduto/:id" element={<DeletarProduto />} />
+              <Route path="/treinos" element={<ListaTreinos />} />
+              <Route path="/cadastrartreino" element={<FormTreino />} />
+              <Route path="/editartreino/:id" element={<FormTreino />} />
+              <Route path="/deletartreino/:id" element={<DeletarTreino />} />
               <Route path="/perfil" element={<Perfil />} />
               <Route path="/sobrenos" element={<SobreNos />} />
           </Routes>
