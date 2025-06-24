@@ -80,7 +80,7 @@ function FormTreino() {
         const file = e.target.files[0];
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("upload_preset", "fitlife");
+        formData.append("upload_preset", "fitlife-treinos");
         formData.append("cloud_name", "dzmzaog7x");
 
         try {
