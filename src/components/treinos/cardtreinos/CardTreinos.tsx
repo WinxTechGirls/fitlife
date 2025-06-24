@@ -16,7 +16,7 @@ function CardTreino({ treino }: CardTreinosProps) {
 
             <div className='text-white flex-col space-y-4'>
                 <h2 className='text-lg font-bold uppercase'>{treino.nome}</h2> 
-                    <div className='flex-col space-y-2'> 
+                    <div className='flex-col space-y-2 text-sm'> 
                         <div className='flex items-center gap-2'><span>Nível: {treino.nivel.dificuldade}</span>{treino.nivel.dificuldade.toLowerCase() === 'iniciante' && (
                         <p className='flex items-center'>
                             <Barbell size={20} className='text-red-600' />

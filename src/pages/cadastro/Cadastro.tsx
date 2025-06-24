@@ -64,6 +64,32 @@ function Cadastro() {
 
     setIsLoading(false)
   }
+
+  async function handleUploadFoto(e: ChangeEvent<HTMLInputElement>) {
+      if (!e.target.files || e.target.files.length === 0) return;
+
+      const file = e.target.files[0];
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "fitlife-users"); 
+      formData.append("cloud_name", "dzmzaog7x");
+
+      try {
+        const res = await fetch("https://api.cloudinary.com/v1_1/dzmzaog7x/image/upload", {
+          method: "POST",
+          body: formData
+        });
+        const data = await res.json();
+
+        setUsuario({
+          ...usuario,
+          foto: data.secure_url
+        });
+      } catch (err) {
+        alert("Erro ao fazer upload da imagem");
+        console.error(err);
+      }
+    }
   
   return (
     <>
@@ -99,14 +125,16 @@ function Cadastro() {
           <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="foto">Foto</label>
             <input
-              type="text"
-              id="foto"
+              type="file"
+              accept="image/*"
               name="foto"
-              placeholder="Foto"
-              className="border-2 border-amber-50 p-2 rounded-sm"
-              value = {usuario.foto}
-             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              id="foto"
+              className="file:bg-red-700 file:hover:bg-red-800 file:text-white file:px-4 file:py-2 file:rounded file:border-none"
+              onChange={handleUploadFoto}
             />
+            {usuario.foto && (
+              <img src={usuario.foto} alt="Pré-visualização" className="w-full max-h-80 object-contain mt-2 rounded" />
+            )}
           </div>
           <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="senha">Senha</label>
