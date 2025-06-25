@@ -15,6 +15,7 @@ function FormTreino() {
     const { id } = useParams<{ id: string }>();
     const { usuario, handleLogout } = useContext(AuthContext);
     const token = usuario.token;
+    const [duracaoTempo, setDuracaoTempo] = useState('00:05:00'); // valor padrão
 
     async function buscarTreinoPorId(id: string) {
         try {
@@ -106,19 +107,27 @@ function FormTreino() {
         navigate('/treinos');
     }
 
+    function converterTempoParaSegundos(tempo: string): number {
+    const [hh, mm, ss] = tempo.split(":").map(Number);
+    return hh * 3600 + mm * 60 + ss;
+    }
+
     async function gerarNovoTreino(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
         setIsLoading(true);
 
         const config = { headers: { Authorization: token } };
 
+        const duracaoConvertida = converterTempoParaSegundos(duracaoTempo);
+        const treinoAtualizado = { ...treino, duracao: duracaoConvertida };
+
         try {
             if (id !== undefined) {
-                await atualizar(`/treinos`, treino, setTreino, config);
-                alert('Treino atualizado com sucesso');
+            await atualizar(`/treinos`, treinoAtualizado, setTreino, config);
+            alert('Treino atualizado com sucesso');
             } else {
-                await cadastrar(`/treinos`, treino, setTreino, config);
-                alert('Treino cadastrado com sucesso');
+            await cadastrar(`/treinos`, treinoAtualizado, setTreino, config);
+            alert('Treino cadastrado com sucesso');
             }
         } catch (error: any) {
             if (error.toString().includes('403')) handleLogout();
@@ -183,18 +192,17 @@ function FormTreino() {
                 </div>
 
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="duracao">Duração do treino (em segundos)</label>
+                    <label htmlFor="duracao">Duração do treino</label>
                     <input
-                        type="number"
+                        type="time"
+                        step="1" // permite segundos
                         name="duracao"
-                        placeholder="Ex: 900"
-                        required
                         className="border-2 rounded p-2"
-                        value={treino.duracao}
-                        onChange={atualizarEstado}
+                        value={duracaoTempo}
+                        onChange={(e) => setDuracaoTempo(e.target.value)}
+                        required
                     />
                 </div>
-
                 <div className="flex flex-col gap-2">
                     <p>Nível do Treino</p>
                     <select
