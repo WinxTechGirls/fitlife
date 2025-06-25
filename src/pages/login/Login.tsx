@@ -37,7 +37,7 @@ function Login() {
         <>
             <div className="fundoLogin grid grid-cols-1 lg:grid-cols-2 
                     h-screen place-items-center">
-                <form className= "flex justify-center text-slate-100 items-center flex-col w-1/2 gap-4 rounded-xl bg-neutral-950/70 px-20 py-15 shadow-lg backdrop-blur-md max-sm:px-8"
+                <form className= "flex flex-col items-center justify-center text-slate-100 gap-4 w-full max-w-lg rounded-xl bg-neutral-950/70 shadow-lg backdrop-blur-md px-6 sm:px-10 md:px-16 lg:px-24 py-8 sm:py-10 lg:py-20" 
                     onSubmit={login}>
                     <h2 className=" text-5xl pb-8">Login</h2>
                     <div className="flex flex-col w-full">

@@ -5,10 +5,11 @@
     backdrop-filter: blur(10px); 
     overflow-y: auto;
     max-height: 90vh;
+
+    @media screen and (max-width: 768px) {
+        width: 90%;
+        margin: 0 auto;
+    }
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+

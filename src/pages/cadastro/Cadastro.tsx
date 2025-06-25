@@ -93,11 +93,10 @@ function Cadastro() {
   
   return (
     <>
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen 
-            place-items-center fundoCadastro">
-        <form className='flex justify-center col-start-2 items-center flex-col w-full gap-3 bg-neutral-950/70 backdrop-blur-md px-15 h-full text-slate-100 ' 
+      <div className="grid grid-cols-1 lg:grid-cols-2 h-screen place-items-center fundoCadastro">
+        <form className='flex flex-col lg:col-start-2 items-center justify-center gap-4 w-full max-w-xl text-slate-100 bg-neutral-950/70 backdrop-blur-md shadow-lg rounded-xl px-6 sm:px-10 md:px-16 lg:px-24 py-8 sm:py-10 lg:py-12' 
           onSubmit={cadastrarNovoUsuario}>
-          <h2 className='text-5xl'>Cadastrar</h2>
+          <h2 className='text-4xl'>Cadastrar</h2>
           <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="nome">Nome</label>
             <input

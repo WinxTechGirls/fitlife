@@ -137,7 +137,7 @@ function FormTreino() {
                 {id !== undefined ? 'Editar treino' : 'Cadastrar Treino'}
             </h1>
 
-            <form className="flex flex-col w-1/2 gap-4" onSubmit={gerarNovoTreino}>
+            <form className="flex flex-col gap-4 w-full px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-6 md:py-8 lg:py-10 max-w-3xl" onSubmit={gerarNovoTreino}>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="nome">Título do Treino</label>
                     <input
