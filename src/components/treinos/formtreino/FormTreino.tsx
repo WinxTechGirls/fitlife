@@ -15,7 +15,7 @@ function FormTreino() {
     const { id } = useParams<{ id: string }>();
     const { usuario, handleLogout } = useContext(AuthContext);
     const token = usuario.token;
-    const [duracaoTempo, setDuracaoTempo] = useState('00:05:00'); // valor padrão
+    const [duracaoTempo, setDuracaoTempo] = useState('00:05:00'); // valor padrão de 15 min para caso o usuário esqueça de preencher
 
     async function buscarTreinoPorId(id: string) {
         try {

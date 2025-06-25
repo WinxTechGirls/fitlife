@@ -13,6 +13,11 @@ function Cadastro() {
 
   const[confirmaSenha, setConfirmaSenha] = useState<string>("")
 
+  const [touchedNome, setTouchedNome] = useState(false);
+  const [touchedEmail, setTouchedEmail] = useState(false);
+  const [touchedSenha, setTouchedSenha] = useState(false);
+  const [touchedConfirmarSenha, setTouchedConfirmarSenha] = useState(false);
+
   const [usuario, setUsuario] = useState<Usuario>({
     id: null,
     nome: '',
@@ -20,7 +25,16 @@ function Cadastro() {
     senha: '',
     foto: ''
   })
+
+    const formularioInvalido =
+      usuario.nome.trim() === '' ||
+      usuario.usuario.trim() === '' ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(usuario.usuario) ||
+      usuario.senha.length < 8 ||
+      usuario.senha !== confirmaSenha;
+
   
+  // Verifica se o usuário já está logado
   useEffect(() => {
     if (usuario.id !== 0 && usuario.id !== null){
       retornar()
@@ -105,9 +119,13 @@ function Cadastro() {
               name="nome"
               placeholder="Nome"
               className="border-2 border-amber-50 p-2 rounded-sm"
-             value = {usuario.nome}
-             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              value={usuario.nome}
+              onChange={(e) => atualizarEstado(e)}
+              onBlur={() => setTouchedNome(true)}
             />
+            {touchedNome && usuario.nome.trim() === '' && (
+              <span className="text-sm text-red-500">O nome é obrigatório.</span>
+            )}
           </div>
           <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="usuario">Email</label>
@@ -118,8 +136,16 @@ function Cadastro() {
               placeholder="Email"
               className="border-2 border-amber-50 p-2 rounded-sm"
               value = {usuario.usuario}
-             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              onBlur={() => setTouchedEmail(true)}
             />
+            {touchedEmail && usuario.usuario.trim() === '' && (
+              <span className="text-sm text-red-500">O e-mail é obrigatório.</span>
+            )}
+            {touchedEmail && usuario.usuario.trim() !== '' &&
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(usuario.usuario) && (
+              <span className="text-sm text-red-500">Digite um e-mail válido.</span>
+            )}
           </div>
           <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="foto">Foto</label>
@@ -132,7 +158,7 @@ function Cadastro() {
               onChange={handleUploadFoto}
             />
             {usuario.foto && (
-              <img src={usuario.foto} alt="Pré-visualização" className="w-full max-h-80 object-contain mt-2 rounded" />
+              <img src={usuario.foto} alt="Pré-visualização" className="max-h-48 w-full object-contain mt-2 rounded" />
             )}
           </div>
           <div className="flex flex-col w-full space-y-2.5">
@@ -144,8 +170,12 @@ function Cadastro() {
               placeholder="Senha"
               className="border-2 border-amber-50 p-2 rounded-sm"
               value = {usuario.senha}
-             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+              onBlur={() => setTouchedSenha(true)}
             />
+            {touchedSenha && usuario.senha.length > 0 && usuario.senha.length < 8 && (
+              <span className="text-sm text-red-500">A senha deve ter no mínimo 8 caracteres.</span>
+            )}
           </div>
           <div className="flex flex-col w-full space-y-2.5">
             <label htmlFor="confirmarSenha">Confirmar Senha</label>
@@ -157,23 +187,25 @@ function Cadastro() {
               className="border-2 border-amber-50 p-2 rounded-sm"
               value={confirmaSenha}
               onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
+              onBlur={() => setTouchedConfirmarSenha(true)}
             />
+            {touchedConfirmarSenha && confirmaSenha && usuario.senha !== confirmaSenha && (
+              <span className="text-sm text-red-500">As senhas não coincidem.</span>
+            )}
           </div>
           <div className="flex justify-around w-full gap-8">
-			<button 
+            <button 
                 type='reset'
                 className='rounded text-white bg-neutral-700 
                 hover:bg-neutral-800 w-1/2 py-2' 
                 onClick={retornar}
-			>
+			      >
               Cancelar
             </button>
             <button 
                 type='submit'
-                className='rounded text-white bg-red-700 
-                           hover:bg-red-800 w-1/2 py-2
-                           flex justify-center' 
-                >
+                className='rounded text-white bg-red-700 hover:bg-red-800 w-1/2 py-2 flex justify-center disabled:bg-neutral-500' 
+                disabled={formularioInvalido || isLoading}>
                   {isLoading ? <RotatingLines
                     strokeColor="white"
                     strokeWidth="5"
