@@ -91,16 +91,16 @@ function DeletarTreino() {
         );
     }
     return (
-        <div className='container w-2/3 mx-auto montserrat text-white p-15'>
+        <div className='w-full max-w-4xl mx-auto px-4 py-10 montserrat text-white'>
             <h1 className='text-4xl text-center my-4'>Deletar Treino</h1>
 
             <div className="montserrat bg-neutral-950/70 backdrop-blur-md rounded-2xl grid grid-cols-1 lg:grid-cols-2 p-5 gap-5">
                 <img
                     src={treino.foto || 'https://st2.depositphotos.com/4410397/7376/v/450/depositphotos_73768149-stock-illustration-dumbbell-icon.jpg'}
-                    className='object-cover rounded-sm lg:w-120 lg:h-full md:h-full'
+                    className='w-full h-auto max-h-80 object-cover rounded-md'
                     alt={treino.nome} />
 
-                <div className='text-white flex-col space-y-4'>
+                <div className='text-white flex flex-col space-y-4'>
                     <h2 className='text-lg font-bold uppercase'>{treino.nome}</h2> 
                         <div className='flex-col space-y-2'> 
                             <div className='flex items-center gap-2'><span>Nível: {treino.nivel.dificuldade}</span>{treino.nivel.dificuldade.toLowerCase() === 'iniciante' && (
@@ -162,7 +162,7 @@ function DeletarTreino() {
             <p className='text-center text-3xl font-semibold my-7'>
                     Você tem certeza de que deseja apagar o treino acima?
             </p>
-            <div className="flex justify-center space-x-3.5">
+            <div className="flex justify-center flex-wrap gap-4 mt-6">
                 <button 
                     className='border border-red-600 hover:bg-red-600 w-fit py-3 px-5 rounded-sm'
                     onClick={retornar}>

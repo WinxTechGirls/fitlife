@@ -29,6 +29,7 @@ function Navbar() {
                 <div className='flex flex-col lg:flex-row gap-8 items-center'>
                     <Link to='/treinos' className='hover:underline'>Treinos</Link>
                     <Link to='/niveis' className='hover:underline'>Niveis</Link>
+                    <Link to='/cadastrartreino' className='hover:underline'>Cadastrar treino</Link>
                     <Link to='/cadastrarnivel' className='hover:underline'>Cadastrar nível</Link>
                     <Link to='/perfil' className='hover:underline'>Perfil</Link>
                     <Link to='' onClick={logout} className='hover:underline'>Sair</Link>

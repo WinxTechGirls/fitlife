@@ -57,17 +57,17 @@ function DeletarNivel() {
   }
   
   return (
-    <div className="bg-[url(/banner-home.jpg)] bg-cover h-screen p-5">
-      <div className='container w-1/3 mx-auto'>
+    <div className="bg-[url(/banner-home.jpg)] bg-cover min-h-screen p-5">
+      <div className='container w-full max-w-md mx-auto px-4'>
         <h1 className='text-4xl text-center my-6'>Deletar nível</h1>
         <p className='text-center font-semibold mb-4'> Você tem certeza de que deseja apagar o nível a seguir?</p>
         <div className='flex flex-col rounded-2xl overflow-hidden justify-between bg-neutral-950/70 backdrop-blur-md'>
-          <p className='p-8 text-3xl h-full text-center'>Nível: {nivel.dificuldade}</p>
-          <div className="flex justify-center">
-            <button className='rounded-sm border border-red-600 hover:bg-red-600 px-6 py-3 m-4' onClick={retornar}> Não </button>
+          <p className='px-6 py-8 text-2xl text-center break-words'>Nível: {nivel.dificuldade}</p>
+          <div className="flex justify-center gap-4 px-4 pb-6 flex-wrap">
             <button className='rounded-sm border border-green-400 hover:bg-green-400 px-6 py-3 m-4' onClick={deletarNivel}>
               {isLoading ? <RotatingLines strokeColor="white" strokeWidth="5" animationDuration="0.75" width="24" visible={true} /> : <span>Sim</span> }
             </button>
+            <button className='rounded-sm border border-red-600 hover:bg-red-600 px-6 py-3 m-4' onClick={retornar}> Não </button>
           </div>
         </div>
       </div>
