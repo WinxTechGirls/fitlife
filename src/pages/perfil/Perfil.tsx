@@ -56,7 +56,7 @@ function Perfil() {
 			{treinosDoUsuario.length === 0 ? (
 				<p className="text-lg text-center text-white mb-8">Você ainda não cadastrou nenhum treino.</p>
 			) : (
-				<div className="w-full lg:w-2/3 space-y-5 mb-12">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-5">
 					{treinosDoUsuario.map(treino => (
 						<CardTreino key={treino.id} treino={treino} />
 					))}
